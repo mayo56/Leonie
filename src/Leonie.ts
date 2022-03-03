@@ -7,7 +7,12 @@ const client = new Client({
     Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_MESSAGES,
     Intents.FLAGS.GUILD_MEMBERS,
+    Intents.FLAGS.DIRECT_MESSAGES,
   ],
+  partials: [
+    "CHANNEL",
+    "MESSAGE",
+  ]
 });
 export { client }
 
@@ -21,8 +26,11 @@ client.on('ready', () => {
  * Ici se trouve tout les éléments pour les commandes sur discord
  * (Commandes executés comme : ./<commande>)
  */
-import ClassiCommands from "./commands/ClassiCommands";
+
+import ClassiCommands from "./commands/ClassicCommands";
 import OwnerCommands from './commands/OwnerCommands';
+import ticket from "./CommandesSupportServ/ticket"
+
 
 client.on('messageCreate', message => {
   if (message.author.bot) return;  // si bot => return
@@ -39,6 +47,7 @@ client.on('messageCreate', message => {
 
     ClassiCommands(message, command, argstest)
     OwnerCommands(message, command, argstest, OwnerId)
+    ticket(message, command, OwnerId)
   }
 })
 
