@@ -54,7 +54,7 @@ client.on('interactionCreate', async int => {
                 const args = m.content.trim().split(/ +/g)
                 const EmbedRapportSend = new MessageEmbed()
                     .setTitle("Rapport de bug")
-                    .setAuthor({ name: m.author.tag })
+                    .setFooter({ text: m.author.tag })
                     .setDescription(args.join(' '))
                     .setColor("RED")
                 channel.send({ embeds: [EmbedRapportSend] }) // on envoie le message

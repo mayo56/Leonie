@@ -22,14 +22,22 @@ client.on('ready', () => {
 })
 
 
+/**
+ * interraction bouton _/fire
+ */
+import interractionFire from "./commands/interactionFire"
+interractionFire(client)
+
+
 /***
  * Ici se trouve tout les éléments pour les commandes sur discord
- * (Commandes executés comme : ./<commande>)
+ * (Commandes executés comme : _/<commande>)
  */
 
 import ClassiCommands from "./commands/ClassicCommands";
 import OwnerCommands from './commands/OwnerCommands';
 import ticket from "./CommandesSupportServ/ticket"
+import CommandServeur from "./CommandesSupportServ/Commandes"
 
 
 client.on('messageCreate', message => {
@@ -48,12 +56,19 @@ client.on('messageCreate', message => {
     ClassiCommands(message, command, argstest)
     OwnerCommands(message, command, argstest, OwnerId)
     ticket(message, command, OwnerId)
+    CommandServeur(message, command)
   }
 })
 
 
 
-
+/**
+ * slash command
+ */
+import slashecommandmagueule from "./commandeSlash/indexCommandesSlash"
+import interraction from "./commandeSlash/interactionSlashCommands"
+interraction(client)
+slashecommandmagueule(client)
 
 
 /**
